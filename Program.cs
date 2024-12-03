@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
+using Backend;  // Backend namespace'ini doğru eklediğinizden emin olun
+
 using Backend.Models;
 using Backend.Data;
 
