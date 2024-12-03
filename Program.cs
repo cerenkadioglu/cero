@@ -31,8 +31,25 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://*:{port}"); 
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+        CreateHostBuilder(args)
+            .Build()
+            .Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseUrls($"http://*:{port}");
+                webBuilder.UseStartup<Startup>();
+            });
+}
+
 
 // CORS yapılandırmasını devreye alıyoruz
 app.UseCors("AllowAll"); // CORS ayarlarını uygulama seviyesinde etkinleştiriyoruz
