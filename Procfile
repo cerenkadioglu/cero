@@ -1,1 +1,1 @@
-web: dotnet Backend.dll
+web: dotnet new_project.dll
