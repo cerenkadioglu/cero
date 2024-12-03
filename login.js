@@ -8,7 +8,7 @@ async function loginUser(event) {
 
     // API'ye veri gönder
     try {
-        const response = await fetch('https://cero-api-c4ec210131fc.herokuapp.com/api/user/login', {
+        const response = await fetch('https://cero-api-12b5eabbafc8.herokuapp.com/api/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
