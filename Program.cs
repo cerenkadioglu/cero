@@ -1,12 +1,10 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
-using Backend.Controllers; // Backend namespace'ini doğru eklediğinizden emin olun
-
+using Backend.Controllers;  // Backend namespace'ini doğru eklediğinizden emin olun
 using Backend.Models;
 using Backend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 // CORS ayarlarını yapıyoruz
 builder.Services.AddCors(options =>
@@ -31,9 +29,9 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Heroku portu kullanarak dinleme ayarlarını yapıyoruz
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://*:{port}"); 
-
+app.Urls.Add($"http://*:{port}"); // Heroku'nun PORT çevresel değişkenini kullanıyoruz
 
 // CORS yapılandırmasını devreye alıyoruz
 app.UseCors("AllowAll"); // CORS ayarlarını uygulama seviyesinde etkinleştiriyoruz
@@ -44,9 +42,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-
-
 
 // Middleware'leri kullanıyoruz
 app.UseAuthorization();
