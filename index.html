@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol ve Giriş Yap</title>
+    <!-- JavaScript dosyalarını dahil et -->
+    <script src="register.js" defer></script>
+    <script src="login.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <h1>Ceren's Website</h1>
+
+
+    <!-- Kayıt Olma Formu -->
+    <section>
+        <h2>Kayıt Ol</h2>
+        <form id="registerForm">
+            <label for="username">Kullanıcı Adı:</label>
+            <input type="text" id="username" name="username" placeholder="Kullanıcı Adı" required>
+            <br><br>
+            <label for="email">E-posta:</label>
+            <input type="email" id="email" name="email" placeholder="E-posta" required>
+            <br><br>
+            <label for="password">Şifre:</label>
+            <input type="password" id="password" name="password" placeholder="Şifre" required>
+            <br><br>
+            <button type="submit">Kayıt Ol</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <!-- Giriş Yapma Formu -->
+    <section>
+        <h2>Giriş Yap</h2>
+        <form id="loginForm">
+            <label for="loginUsername">Kullanıcı Adı:</label>
+            <input type="text" id="loginUsername" name="username" placeholder="Kullanıcı Adı" required>
+            <br><br>
+            <label for="loginPassword">Şifre:</label>
+            <input type="password" id="loginPassword" name="password" placeholder="Şifre" required>
+            <br><br>
+            <button type="submit">Giriş Yap</button>
+        </form>
+    </section>
+</body>
+</html>

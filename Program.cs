@@ -1,0 +1,53 @@
+using Microsoft.AspNetCore.Cors;
+using Microsoft.EntityFrameworkCore;
+using Backend.Models;
+using Backend.Data;
+
+var builder = WebApplication.CreateBuilder(args);
+
+
+// CORS ayarlarını yapıyoruz
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()  // Herhangi bir origin'e izin ver
+              .AllowAnyMethod()  // Tüm HTTP yöntemlerine (GET, POST, PUT, DELETE) izin ver
+              .AllowAnyHeader(); // Herhangi bir header'a izin ver
+    });
+});
+
+// Veritabanı bağlantısı
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
+// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://*:{port}"); 
+
+// CORS yapılandırmasını devreye alıyoruz
+app.UseCors("AllowAll"); // CORS ayarlarını uygulama seviyesinde etkinleştiriyoruz
+
+// Swagger middleware'ini etkinleştiriyoruz
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+
+
+
+// Middleware'leri kullanıyoruz
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
