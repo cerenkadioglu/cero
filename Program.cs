@@ -47,6 +47,6 @@ if (app.Environment.IsDevelopment())
 // Middleware'leri kullanıyoruz
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapGet("/", () => "Hello, Heroku!");
 
 app.Run();
