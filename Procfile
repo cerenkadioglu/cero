@@ -1,1 +1,1 @@
-web: Backend.dll
+web: dotnet Backend.dll
