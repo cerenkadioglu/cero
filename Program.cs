@@ -18,9 +18,16 @@ builder.Services.AddCors(options =>
 });
 
 // Veritabanı bağlantısı
+var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
+if (string.IsNullOrEmpty(connectionString))
+{
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+}
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseSqlServer(connectionString)
 );
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -29,13 +36,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Heroku portu kullanarak dinleme ayarlarını yapıyoruz
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Run($"http://0.0.0.0:{port}");
-
-
 // CORS yapılandırmasını devreye alıyoruz
-app.UseCors("AllowAll"); // CORS ayarlarını uygulama seviyesinde etkinleştiriyoruz
+app.UseCors("AllowAll");
 
 // Swagger middleware'ini etkinleştiriyoruz
 if (app.Environment.IsDevelopment())
@@ -49,4 +51,5 @@ app.UseAuthorization();
 
 app.MapGet("/", () => "Hello, Heroku!");
 
-app.Run();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Run($"http://0.0.0.0:{port}");
