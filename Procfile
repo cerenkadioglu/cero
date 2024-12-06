@@ -1,1 +1,1 @@
-web: dotnet publish  Backend.dll
+web: dotnet publish  Backend.csproj
