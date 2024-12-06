@@ -31,7 +31,8 @@ var app = builder.Build();
 
 // Heroku portu kullanarak dinleme ayarlarını yapıyoruz
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://*:{port}"); // Heroku'nun PORT çevresel değişkenini kullanıyoruz
+app.Run($"http://0.0.0.0:{port}");
+
 
 // CORS yapılandırmasını devreye alıyoruz
 app.UseCors("AllowAll"); // CORS ayarlarını uygulama seviyesinde etkinleştiriyoruz
