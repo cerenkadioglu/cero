@@ -10,7 +10,7 @@ async function registerUser(event) {
 
     // API'ye veri gönder
     try {
-        const response = await fetch('https://cero-api-b077343e1388.herokuapp.com/api/user/register', {
+        const response = await fetch('https://cero-api-7329d7c22c50.herokuapp.com/api/user/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
