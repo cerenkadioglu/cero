@@ -1,4 +1,4 @@
-const API_URL = "https://cero-api-b077343e1388.herokuapp.com/api/users";
+const API_URL = "https://cero-api-7329d7c22c50.herokuapp.com/api/users";
 
 document.getElementById("register-form").addEventListener("submit", async (e) => {
     e.preventDefault();
